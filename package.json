@@ -1,0 +1,22 @@
+{
+  "name": "tiran-lasry-backend",
+  "version": "1.0.0",
+  "description": "tiran lasry backend",
+  "license": "ISC",
+  "author": "Tsoor",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "set PORT=3030 & nodemon server.js"
+  },
+  "keywords": [],
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cryptr": "^6.4.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongodb": "^7.0.0",
+    "node": "^20.19.6"
+  }
+}
