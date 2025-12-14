@@ -5,9 +5,8 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { loggerService } from "./services/logger.service.js";
-import { bugService } from "./api/bug/bug.service.js";
-import { setupAsyncLocalStorage } from "./middlewares/setupAls.middleware.js";
+import { loggerService } from "./services/logger.service";
+import { setupAsyncLocalStorage } from "./middlewares/setupAls.middleware";
 import path from 'path';
 
 
@@ -26,7 +25,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 app.set('query parser', 'extended');
-app.use(setupAsyncLocalStorage)
+// app.use(setupAsyncLocalStorage)
 
 //api routing
 

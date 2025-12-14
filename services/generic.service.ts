@@ -1,24 +1,44 @@
 import { ObjectId } from "mongodb"
+import { dbService } from "./db.service"
+import { loggerService } from "./logger.service"
+import type { OptionalId, Document } from "mongodb"
 
-export function genericService(collectionName) {
+// type ItemDetails = {
+//     height: number,
+//     width: number,
+//     color: string
+// }
 
-    
+// type Item = {
+//     _id?: ObjectId,
+//     description: string,
+//     label?: string[],
+//     name: string,
+//     price: number,
+//     Details: ItemDetails,
+//     imgUrl: string,
+//     radius: number
+// }
+
+
+export function genericService(collectionName: string) {
+
 
     async function _getCollection() {
         return dbService.getCollection(collectionName)
     }
 
     async function query(criteria = {}) {
-        try {זה
+        try {
             const collection = await _getCollection()
-            return await collection.find(criteria).toArray() // שאילתה גנרית
+            return await collection.find<[]>(criteria).toArray() // שאילתה גנרית
         } catch (err) {
             loggerService.error(`Couldn't query items from ${collectionName}`, err)
             throw err
         }
     }
 
-    async function getById(id) {
+    async function getById(id: string | ObjectId) {
         try {
             const collection = await _getCollection()
             const criteria = { _id: new ObjectId(id) }
@@ -29,20 +49,23 @@ export function genericService(collectionName) {
         }
     }
 
-    async function add(item) {
+    async function add<T extends Document>(item: OptionalId<T>): Promise<T> {
         try {
             const collection = await _getCollection()
             const res = await collection.insertOne(item)
             if (!res.acknowledged) throw new Error(`Couldn't add item to ${collectionName}`)
-            item._id = res.insertedId
-            return item
+            const newItem = {
+                ...item,
+                _id: res.insertedId
+            } as T
+            return newItem
         } catch (err) {
             loggerService.error(`Couldn't add item to ${collectionName}`, err)
             throw err
         }
     }
 
-    async function update(item) {
+    async function update<T extends Document>(item: T): Promise<T> {
         try {
             const collection = await _getCollection()
             const criteria = { _id: new ObjectId(item._id) }
@@ -60,7 +83,7 @@ export function genericService(collectionName) {
         }
     }
 
-    async function remove(id) {
+    async function remove(id: string | ObjectId) {
         try {
             const collection = await _getCollection()
             const criteria = { _id: new ObjectId(id) }

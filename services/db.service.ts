@@ -1,17 +1,16 @@
-import { MongoClient } from "mongodb";
-
-import { config } from "../config/index.js";
-import { loggerService } from "./logger.service.js";
+import { config } from "../config/index";
+import { loggerService } from "./logger.service";
+import { MongoClient, Db, Collection, Document } from "mongodb";
 
 
 export const dbService = { getCollection };
 
-var dbConn = null
+let dbConn: Db | null = null
 
-async function getCollection(collectionName) {
+async function getCollection<T extends Document>(collectionName: string): Promise<Collection<T>> {
     try {
         const db = await _connect()
-        const collection = await db.collection(collectionName)
+        const collection = await db.collection<T>(collectionName)
         return collection
     } catch (err) {
         loggerService.error("Couldn't connect to Mongo collection")
@@ -19,7 +18,7 @@ async function getCollection(collectionName) {
     }
 }
 
-async function _connect() {
+async function _connect() :Promise<Db> {
     if (dbConn) return dbConn
     try {
         const client = await MongoClient.connect(config.dbURL)

@@ -1,42 +1,45 @@
 import fs from 'fs'
 
+type logArgs = any[]
+type logLevel = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR'
+
 export const loggerService = {
-    debug(...args) {
+    debug(...args: logArgs) {
         doLog('DEBUG', ...args)
     },
-    info(...args) {
+    info(...args: logArgs) {
         doLog('INFO', ...args)
     },
-    warn(...args) {
+    warn(...args: logArgs) {
         doLog('WARN', ...args)
     },
-    error(...args) {
+    error(...args: logArgs) {
         doLog('ERROR', ...args)
     }
 }
 
 
-const logsDir = './logs'
+const logsDir: string = './logs'
 if (!fs.existsSync(logsDir)) {
     fs.mkdirSync(logsDir)
 }
 
 //define the time format
 function getTime() {
-    let now = new Date()
+    let now: Date = new Date()
     return now.toLocaleString('he')
 }
 
-function isError(e) {
+function isError(e: Error) {
     return e && e.stack && e.message
 }
 
-function doLog(level, ...args) {
+function doLog(level: logLevel, ...args: logArgs) {
 
-    const strs = args.map(arg =>
+    const strs: string[] = args.map(arg =>
         (typeof arg === 'string' || isError(arg)) ? arg : JSON.stringify(arg)
     )
-    var line = strs.join(' | ')
+    var line: string = strs.join(' | ')
     line = `${getTime()} - ${level} - ${line}\n`
     console.log(line)
     fs.appendFile('./logs/backend.log', line, (err) => {
