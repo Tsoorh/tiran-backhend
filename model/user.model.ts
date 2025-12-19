@@ -23,3 +23,12 @@ export type UserInBody = {
         user: User
     }
 }
+ 
+export type LoginCredentials={
+    username:string
+    password:string
+}
+
+export type CredentialInBody={
+    body: LoginCredentials
+}

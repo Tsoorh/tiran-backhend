@@ -51,21 +51,24 @@ export function genericService(collectionName: string) {
         }
     }
 
-    async function add<T extends Document>(item: OptionalId<T>): Promise<T> {
+    async function add<T extends Document>(item: T): Promise<WithId<T>> {
         try {
-            const collection = await _getCollection()
-            const res = await collection.insertOne(item)
-            if (!res.acknowledged) throw new Error(`Couldn't add item to ${collectionName}`)
-            const newItem = {
-                ...item,
-                _id: res.insertedId
-            } as T
-            return newItem
+            const collection = await _getCollection();
+            
+            const res = await collection.insertOne(item as any);
+            if (!res.acknowledged || !res.insertedId) {
+                throw new Error(`Failed to insert into ${collectionName}`);
+            }
+            
+            const newItem = { ...item, _id: res.insertedId } as WithId<T>;
+            return newItem;
         } catch (err) {
-            loggerService.error(`Couldn't add item to ${collectionName}`, err)
-            throw err
+            loggerService.error(`Couldn't add to ${collectionName}`, err);
+            throw err;
         }
     }
+
+
 
     async function update<T extends Document>(item: T): Promise<T> {
         try {

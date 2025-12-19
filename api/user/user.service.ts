@@ -10,24 +10,19 @@ const COLLECTION: string = 'user'
 const genericUserService = genericService(COLLECTION)
 
 export const userService = {
-    add: genericUserService.add,
-    update: genericUserService.update,
-    remove: genericUserService.remove,
+    add: (user: User) => genericUserService.add(user),
+    update: (user: User) => genericUserService.update(user),
+    remove: (userId: string) => genericUserService.remove(userId),
     getByUsername,
     getById
 }
 
-async function getByUsername(username: string): Promise<Miniuser | void | undefined> {
+async function getByUsername(username: string): Promise<User | null> {
     try {
         const criteria = { username }
-        let isUserExist = await genericUserService.query(criteria);
-        if (!isUserExist) return
-        const miniUser: Miniuser = {
-            _id: isUserExist[0]._id,
-            fullname: isUserExist[0].fullname,
-            username: isUserExist[0].username
-        }
-        return miniUser
+        let users = await genericUserService.query(criteria);
+        if (!users || Array.isArray(users) && users.length === 0) return null
+        return users[0] as User
     } catch (err) {
         loggerService.error("Couldn't get user by username")
         throw err
@@ -47,9 +42,10 @@ async function getById(userId: string): Promise<Miniuser | void | undefined> {
 }
 
 export function convertUserToMiniUser(user: User): Miniuser {
-    return {
+    const mini = {
         _id: user._id,
         fullname: user.fullname,
         username: user.username
     }
+    return mini
 }

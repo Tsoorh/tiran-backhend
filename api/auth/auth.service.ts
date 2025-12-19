@@ -1,47 +1,67 @@
 import { loggerService } from "../../services/logger.service"
 import jwt from 'jsonwebtoken';
-import { Miniuser,User } from "../../model/user.model";
+import { Miniuser, User } from "../../model/user.model";
+import { convertUserToMiniUser, userService } from "../user/user.service";
+import bcrypt from 'bcrypt';
+
 
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY || 'Tiran_Lasry_SecretKEY'
 const REFRESH_TOKEN_KEY = process.env.REFRESH_TOKEN_KEY || 'Tiran_Lasry_SecretKEY'
+const SALTROUNDS = Number(process.env.SALT_ROUNDS) || 11
+
+export const authService = {
+    getLoginAccessToken,
+    getLoginRefreshToken,
+    validateToken,
+    login,
+    register
+}
 
 
 
-async function getLoginAccessToken(user: Miniuser) {
+function getLoginAccessToken(user: Miniuser) {
     return jwt.sign(user, ACCESS_TOKEN_KEY, { expiresIn: '15m' })
 }
 
-async function getLoginRefreshToken(user: Miniuser) {
+function getLoginRefreshToken(user: Miniuser) {
     return jwt.sign(user, REFRESH_TOKEN_KEY, { expiresIn: '7d' })
 }
 
-async function validateToken(token: string) {
-    try {
-        return jwt.verify(token, ACCESS_TOKEN_KEY)
-    } catch (err) {
-        loggerService.error("Couldn't validate token", err)
-        throw err
-    }
+function validateToken(token: string):Miniuser {
+    return jwt.verify(token, ACCESS_TOKEN_KEY) as Miniuser
 }
 
 
 
-async function login(username: string, password: string) {
+async function login(username: string, password: string): Promise<Miniuser> {
     try {
-    // const userDetails = await userService.getByUsername<User>(username);
-    // const hash =
-
+        const userDetails = await userService.getByUsername(username);
+        if (!userDetails) throw new Error("Username doesn't exist")
+        const match = await bcrypt.compare(password, userDetails.password)
+        if (!match) throw new Error("Username or password is incorrect")
+        const miniUser = convertUserToMiniUser(userDetails)
+        return miniUser
     } catch (err) {
         loggerService.error("Couldn't login", err)
         throw err
     }
 }
-async function register(user: User) {
+async function register(user: User): Promise<Miniuser> {
     try {
+        if (!user.fullname || !user.password || !user.username) throw new Error("Missing required information");
 
+        const userDetails = await userService.getByUsername(user.username);
+        if (userDetails) throw new Error("Username already taken")
+
+        const hash = await bcrypt.hash(user.password, SALTROUNDS)
+        const userToSave: User = { ...user, password: hash }
+
+        const userWithId = await userService.add(userToSave)
+        return convertUserToMiniUser(userWithId)
     } catch (err) {
         loggerService.error("Couldn't register", err)
         throw err
     }
 }
+
 

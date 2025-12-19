@@ -1,0 +1,36 @@
+19.12.2025, 12:36:22 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 12:44:12 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 12:57:06 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 13:01:32 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 13:02:11 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 13:03:05 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 13:03:05 - ERROR - Couldn't login | Error: Username or password is incorrect
+19.12.2025, 13:07:40 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 13:07:40 - ERROR - Couldn't login | Error: Username or password is incorrect
+19.12.2025, 13:12:01 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 13:12:01 - ERROR - Couldn't login | Error: Username or password is incorrect
+19.12.2025, 13:14:52 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 13:14:52 - ERROR - Couldn't login | Error: Username or password is incorrect
+19.12.2025, 13:16:55 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 13:16:55 - ERROR - Couldn't login | Error: Username or password is incorrect
+19.12.2025, 13:17:32 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 13:17:32 - ERROR - Couldn't login | Error: Username or password is incorrect
+19.12.2025, 13:19:50 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 13:19:50 - ERROR - Couldn't login | Error: Username or password is incorrect
+19.12.2025, 13:25:12 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 13:25:12 - ERROR - Couldn't login | Error: Username or password is incorrect
+19.12.2025, 13:30:03 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 13:30:03 - ERROR - Couldn't login | Error: Username or password is incorrect
+19.12.2025, 13:30:03 - ERROR - Couldn't login | Error: Username or password is incorrect
+19.12.2025, 13:30:42 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 13:30:42 - ERROR - Couldn't login | Error: Username or password is incorrect
+19.12.2025, 13:30:42 - ERROR - Couldn't login | Error: Username or password is incorrect
+19.12.2025, 13:32:09 - ERROR - Couldn't login | Error: Username doesn't exist
+19.12.2025, 13:32:09 - ERROR - Couldn't login | Error: Username or password is incorrect
+19.12.2025, 13:32:09 - ERROR - Couldn't login | Error: Username or password is incorrect
+19.12.2025, 16:14:40 - ERROR - Cannot connect to DB
+19.12.2025, 16:14:40 - ERROR - Couldn't connect to Mongo collection
+19.12.2025, 16:14:40 - ERROR - Couldn't add to user | {"errorLabelSet":{},"reason":{"type":"Unknown","servers":{"localhost:27017":{"address":"localhost:27017","type":"Unknown","hosts":[],"passives":[],"arbiters":[],"tags":{},"minWireVersion":0,"maxWireVersion":0,"roundTripTime":-1,"minRoundTripTime":0,"lastUpdateTime":40076355,"lastWriteDate":0,"error":{"errorLabelSet":{},"beforeHandshake":false},"topologyVersion":null,"setName":null,"setVersion":null,"electionId":null,"logicalSessionTimeoutMinutes":null,"maxMessageSizeBytes":null,"maxWriteBatchSize":null,"maxBsonObjectSize":null,"primary":null,"me":null,"$clusterTime":null,"iscryptd":false}},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":null,"maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null}}
+19.12.2025, 16:27:13 - ERROR - Cannot connect to DB
+19.12.2025, 16:27:13 - ERROR - Couldn't connect to Mongo collection
+19.12.2025, 16:27:13 - ERROR - Couldn't add to user | {"errorLabelSet":{},"reason":{"type":"Unknown","servers":{"localhost:27017":{"address":"localhost:27017","type":"Unknown","hosts":[],"passives":[],"arbiters":[],"tags":{},"minWireVersion":0,"maxWireVersion":0,"roundTripTime":-1,"minRoundTripTime":0,"lastUpdateTime":40847253,"lastWriteDate":0,"error":{"errorLabelSet":{},"beforeHandshake":false},"topologyVersion":null,"setName":null,"setVersion":null,"electionId":null,"logicalSessionTimeoutMinutes":null,"maxMessageSizeBytes":null,"maxWriteBatchSize":null,"maxBsonObjectSize":null,"primary":null,"me":null,"$clusterTime":null,"iscryptd":false}},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":null,"maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null}}
