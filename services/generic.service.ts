@@ -1,7 +1,8 @@
-import { ObjectId } from "mongodb"
+import { ObjectId, WithId } from "mongodb"
 import { dbService } from "./db.service"
 import { loggerService } from "./logger.service"
-import type { OptionalId, Document } from "mongodb"
+import type { OptionalId, Document, Filter } from "mongodb"
+import { Product } from "../model/product.model"
 
 // type ItemDetails = {
 //     height: number,
@@ -28,10 +29,11 @@ export function genericService(collectionName: string) {
         return dbService.getCollection(collectionName)
     }
 
-    async function query(criteria = {}) {
+    async function query<T extends Document>(criteria: Filter<T> = {}): Promise<WithId<T[]>> {
         try {
             const collection = await _getCollection()
-            return await collection.find<[]>(criteria).toArray() // שאילתה גנרית
+            const cursor = collection.find<T>(criteria as any)
+            return await cursor.toArray() as WithId<T[]>
         } catch (err) {
             loggerService.error(`Couldn't query items from ${collectionName}`, err)
             throw err

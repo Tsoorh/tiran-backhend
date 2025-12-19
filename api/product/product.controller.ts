@@ -1,26 +1,18 @@
 import type { Request, Response } from "express";
 import { loggerService } from "../../services/logger.service";
 import { productService } from "./products.service";
-import type { FilterBy, Product } from "./products.service";
+import { FullProduct, ProductParams, FilterBy } from "../../model/product.model";
 
 
-type ProductParams = { productId: string }
-type ProductDetails = {
-    height: number
-    width: number
-    color: string
-}
-type FullProduct = Product & {
-    label: string[]
-    imgUrl: string
-    radius: number
-    details: ProductDetails
-}
+
 
 export async function getProducts(req: Request, res: Response) {
+    const { txt, price, category } = req.query
+
     const filterBy: FilterBy = {
-        txt: req.query?.toString() || '',
-        price: Number(req.query?.price) || undefined
+        txt: (txt as string) || '',
+        price: (price !== undefined && !isNaN(+price)) ? +price : undefined,
+        category: (category as string) || ''
     }
     try {
         const products = await productService.query(filterBy)

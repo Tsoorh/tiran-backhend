@@ -1,19 +1,9 @@
 import { Filter, ObjectId } from "mongodb"
-import { dbService } from "../../services/db.service.js"
-import { loggerService } from "../../services/logger.service.js"
-import { genericService } from "../../services/generic.service.js"
+import { dbService } from "../../services/db.service"
+import { loggerService } from "../../services/logger.service"
+import { genericService } from "../../services/generic.service"
+import { FilterBy, Product } from "../../model/product.model"
 
-export type FilterBy = {
-    txt?: string,
-    price?: number
-}
-
-export type Product = {
-    _id?: ObjectId
-    name: string
-    description: string
-    price: number
-}
 
 
 const COLLECTION = 'product'
@@ -44,6 +34,9 @@ function _getCriteria(filterBy: FilterBy) {
     }
     if (filterBy.price) {
         criteria.price = { $lte: filterBy.price }
+    }
+    if (filterBy.category) {
+        criteria.category = { $regex: filterBy.category, $options: 'i' }
     }
     return criteria
 }
