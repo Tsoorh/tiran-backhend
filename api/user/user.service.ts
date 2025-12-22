@@ -19,7 +19,7 @@ export const userService = {
 
 async function getByUsername(username: string): Promise<User | null> {
     try {
-        const criteria = { username }
+        const criteria = { username:username }
         let users = await genericUserService.query(criteria);
         if (!users || Array.isArray(users) && users.length === 0) return null
         return users[0] as User

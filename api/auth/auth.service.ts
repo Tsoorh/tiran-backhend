@@ -52,11 +52,13 @@ async function register(user: User): Promise<Miniuser> {
 
         const userDetails = await userService.getByUsername(user.username);
         if (userDetails) throw new Error("Username already taken")
-
+        
         const hash = await bcrypt.hash(user.password, SALTROUNDS)
         const userToSave: User = { ...user, password: hash }
-
+        if(userToSave.isAdmin === undefined) userToSave.isAdmin = false
+        
         const userWithId = await userService.add(userToSave)
+
         return convertUserToMiniUser(userWithId)
     } catch (err) {
         loggerService.error("Couldn't register", err)

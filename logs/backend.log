@@ -34,3 +34,18 @@
 19.12.2025, 16:27:13 - ERROR - Cannot connect to DB
 19.12.2025, 16:27:13 - ERROR - Couldn't connect to Mongo collection
 19.12.2025, 16:27:13 - ERROR - Couldn't add to user | {"errorLabelSet":{},"reason":{"type":"Unknown","servers":{"localhost:27017":{"address":"localhost:27017","type":"Unknown","hosts":[],"passives":[],"arbiters":[],"tags":{},"minWireVersion":0,"maxWireVersion":0,"roundTripTime":-1,"minRoundTripTime":0,"lastUpdateTime":40847253,"lastWriteDate":0,"error":{"errorLabelSet":{},"beforeHandshake":false},"topologyVersion":null,"setName":null,"setVersion":null,"electionId":null,"logicalSessionTimeoutMinutes":null,"maxMessageSizeBytes":null,"maxWriteBatchSize":null,"maxBsonObjectSize":null,"primary":null,"me":null,"$clusterTime":null,"iscryptd":false}},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":null,"maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null}}
+20.12.2025, 19:55:26 - ERROR - Couldn't login | Error: Username doesn't exist
+20.12.2025, 19:55:26 - ERROR - Couldn't login:  | Error: Username doesn't exist
+20.12.2025, 20:03:25 - ERROR - Couldn't login | Error: Username doesn't exist
+20.12.2025, 20:03:25 - ERROR - Couldn't login:  | Error: Username doesn't exist
+20.12.2025, 20:03:57 - ERROR - Couldn't login | Error: Username doesn't exist
+20.12.2025, 20:03:57 - ERROR - Couldn't login:  | Error: Username doesn't exist
+20.12.2025, 20:05:06 - ERROR - Couldn't login | Error: Username or password is incorrect
+20.12.2025, 20:05:06 - ERROR - Couldn't login:  | Error: Username or password is incorrect
+20.12.2025, 20:13:45 - ERROR - Couldn't register | TypeError: Cannot read properties of undefined (reading 'fullname')
+20.12.2025, 20:13:45 - ERROR - Couldn't register:  | TypeError: Cannot read properties of undefined (reading 'fullname')
+20.12.2025, 20:22:05 - ERROR - Couldn't register:  | TypeError: Cannot read properties of undefined (reading 'fullname')
+20.12.2025, 20:22:05 - ERROR - Couldn't register | TypeError: Cannot read properties of undefined (reading 'fullname')
+20.12.2025, 20:23:07 - ERROR - Couldn't register | TypeError: Cannot read properties of undefined (reading 'fullname')
+20.12.2025, 20:23:07 - ERROR - Couldn't register:  | TypeError: Cannot read properties of undefined (reading 'fullname')
+20.12.2025, 20:26:45 - ERROR - Couldn't logout:  | Error: Couln't logout - no one is logged in

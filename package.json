@@ -19,6 +19,7 @@
         "@types/jsonwebtoken": "^9.0.10",
         "@types/mongodb": "^4.0.6",
         "bcrypt": "^6.0.0",
+        "cloudinary": "^2.8.0",
         "cookie-parser": "^1.4.7",
         "cors": "^2.8.5",
         "cryptr": "^6.4.0",

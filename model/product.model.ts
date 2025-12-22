@@ -17,7 +17,7 @@ export type ProductParams = { productId: string }
 
 type ProductSize = {
     height: number
-    width: number
+    radius: number
 }
 type SocketType = {
     screwType: string
@@ -26,7 +26,7 @@ type SocketType = {
 
 export type FullProduct = Product & {
     category:string[]
-    imgUrl: string
+    imgUrl: string[]
     radius: number
     size: ProductSize
     socketType:SocketType

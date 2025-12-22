@@ -28,7 +28,11 @@ app.set('query parser', 'extended');
 // app.use(setupAsyncLocalStorage)
 
 //api routing
+import { authRoutes } from "./api/auth/auth.route";
+import { productRoutes } from "./api/product/products.route";
 
+app.use('/api/auth',authRoutes)
+app.use('/api/product',productRoutes)
 
 
 

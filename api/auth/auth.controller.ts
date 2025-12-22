@@ -17,9 +17,9 @@ const COOKIES_OPTIONS_REFRESH: CookieOptions = {
 
 
 export async function registerCont(req: Request<UserInBody>, res: Response) {
-    const user: User = req.body.user
+    const newuser: User = req.body.newuser
     try {
-        const newMiniUser = await authService.register(user)
+        const newMiniUser = await authService.register(newuser)
         res.status(200).send(newMiniUser)
     } catch (err) {
         loggerService.error("Couldn't register: ", err)
@@ -50,6 +50,7 @@ export async function logoutCont(req: Request, res: Response) {
     try {
         if (!req.cookies?.login && !req.cookies.refreshToken) throw new Error("Couln't logout - no one is logged in")
 
+        //clear cookies
         if (req.cookies?.loginToken) res.clearCookie('loginToken', COOKIES_OPTIONS_ACCESS)
         if (req.cookies?.refreshToken) res.clearCookie('refreshToken', COOKIES_OPTIONS_REFRESH)
 
