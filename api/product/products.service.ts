@@ -28,15 +28,21 @@ function _getCriteria(filterBy: FilterBy) {
     if (filterBy.txt) {
         const regex = { $regex: filterBy.txt, $options: 'i' }
         criteria.$or = [
-            { name: regex },
-            { description: regex }
+            { "name.en": regex },
+            { "name.he": regex },
+            { "description.en": regex },
+            { "description.he": regex }
         ]
     }
     if (filterBy.price) {
         criteria.price = { $lte: filterBy.price }
     }
     if (filterBy.category) {
-        criteria.category = { $regex: filterBy.category, $options: 'i' }
+        const regex= { $regex: filterBy.category, $options: 'i' }
+        criteria.$or = [
+            {"category.en" : regex},
+            {"category.he" : regex}
+        ]
     }
     return criteria
 }

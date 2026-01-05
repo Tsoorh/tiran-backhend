@@ -6,10 +6,15 @@ export type FilterBy = {
     category?:string
 }
 
+type hebrewEnglishObj = {
+    he:string
+    en:string
+}
+
 export type Product = {
     _id?: ObjectId
-    name: string
-    description: string
+    name: hebrewEnglishObj
+    description: hebrewEnglishObj
     price: number
 }
 
@@ -26,9 +31,10 @@ type SocketType = {
 
 export type FullProduct = Product & {
     category:string[]
-    imgUrl: string[]
+    imgsUrl: string[]
     radius: number
     size: ProductSize
     socketType:SocketType
-    material:string[]
+    material:hebrewEnglishObj[]
+    woodType:hebrewEnglishObj[]
 }
